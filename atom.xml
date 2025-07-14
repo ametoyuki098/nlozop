@@ -1,33 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>博客名</title>
+  <title>给X许</title>
   
   
   <link href="http://localhost:4000/atom.xml" rel="self"/>
   
   <link href="http://localhost:4000/"/>
-  <updated>2025-06-28T09:32:12.964Z</updated>
+  <updated>2025-07-13T10:56:20.893Z</updated>
   <id>http://localhost:4000/</id>
   
   <author>
-    <name>作者名</name>
+    <name>geixxu</name>
     
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>test</title>
+    <link href="http://localhost:4000/2025/07/13/test/"/>
+    <id>http://localhost:4000/2025/07/13/test/</id>
+    <published>2025-07-12T23:52:52.000Z</published>
+    <updated>2025-07-13T10:56:20.893Z</updated>
+    
+    
+      
+      
+    <summary type="html">&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=</summary>
+      
+    
+    
+    
+    <category term="测试" scheme="http://localhost:4000/categories/%E6%B5%8B%E8%AF%95/"/>
+    
+    
+    <category term="termux" scheme="http://localhost:4000/tags/termux/"/>
+    
+  </entry>
+  
+  <entry>
     <title>我的第一篇文章</title>
     <link href="http://localhost:4000/2025/06/28/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/"/>
     <id>http://localhost:4000/2025/06/28/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/</id>
     <published>2025-06-28T09:26:01.000Z</published>
-    <updated>2025-06-28T09:32:12.964Z</updated>
+    <updated>2025-07-14T04:02:28.840Z</updated>
     
     
       
       
-    <summary type="html">&lt;h2 id=&quot;你好&quot;&gt;&lt;a href=&quot;#你好&quot; class=&quot;headerlink&quot; title=&quot;你好&quot;&gt;&lt;/a&gt;你好&lt;/h2&gt;&lt;p&gt;** 这是我的第一篇文章**&lt;/p&gt;
-</summary>
+    <summary type="html">&lt;h2 id=&quot;你好&quot;&gt;&lt;a href=&quot;#你好&quot; class=&quot;headerlink&quot; title=&quot;你好&quot;&gt;&lt;/a&gt;你好&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;这是我的第一篇文章&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;test&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;test1</summary>
       
     
     
@@ -36,6 +61,8 @@
     
     
     <category term="文章" scheme="http://localhost:4000/tags/%E6%96%87%E7%AB%A0/"/>
+    
+    <category term="termux" scheme="http://localhost:4000/tags/termux/"/>
     
   </entry>
   

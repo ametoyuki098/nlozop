@@ -4,11 +4,36 @@
   
     
     <entry>
+      <title>test</title>
+      <link href="/2025/07/13/test/"/>
+      <url>/2025/07/13/test/</url>
+      
+        <content type="html"><![CDATA[<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -i input.mp4 output.mp4 <span class="comment"># 这是ffmpeg的基础命令。</span></span><br><span class="line">magick <span class="comment"># 一个强大的命令行图片工具。</span></span><br><span class="line">pkg ins termux-api <span class="comment"># 安装此工具需先安装-termux-api插件，这样才能正常调用手机各类api。</span></span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 测试 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> termux </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>我的第一篇文章</title>
       <link href="/2025/06/28/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/"/>
       <url>/2025/06/28/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/</url>
       
-        <content type="html"><![CDATA[<h2 id="你好"><a href="#你好" class="headerlink" title="你好"></a>你好</h2><p>** 这是我的第一篇文章**</p>]]></content>
+        <content type="html"><![CDATA[<h2 id="你好"><a href="#你好" class="headerlink" title="你好"></a>你好</h2><p><strong>这是我的第一篇文章</strong></p><blockquote><p>test</p><ul><li>test1</li></ul></blockquote><p>深夜的街道空无一人，路灯投下昏黄的光晕，将我的影子拉得很长。风卷起一片枯叶，在水泥地上摩擦出细碎的声响。远处传来几声犬吠，又很快归于沉寂。我抬头看了看天空，没有星星，只有一层薄雾般的云。这样的夜晚总让人想起一些往事——那些未完成的约定，没说出口的话，像这夜色一样，既清晰又模糊。</p>]]></content>
       
       
       <categories>
@@ -21,6 +46,8 @@
         <tags>
             
             <tag> 文章 </tag>
+            
+            <tag> termux </tag>
             
         </tags>
       
