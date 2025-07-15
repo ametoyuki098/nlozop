@@ -3,11 +3,11 @@
   <title>给X许</title>
   
   
-  <link href="http://localhost:4000/atom.xml" rel="self"/>
+  <link href="https://ametoyuki098.github.io/atom.xml" rel="self"/>
   
-  <link href="http://localhost:4000/"/>
-  <updated>2025-07-13T10:56:20.893Z</updated>
-  <id>http://localhost:4000/</id>
+  <link href="https://ametoyuki098.github.io/"/>
+  <updated>2025-07-15T00:47:40.650Z</updated>
+  <id>https://ametoyuki098.github.io/</id>
   
   <author>
     <name>geixxu</name>
@@ -17,11 +17,38 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>photo,图片预览</title>
+    <link href="https://ametoyuki098.github.io/2025/07/15/photo/"/>
+    <id>https://ametoyuki098.github.io/2025/07/15/photo/</id>
+    <published>2025-07-15T00:40:03.000Z</published>
+    <updated>2025-07-15T00:47:40.650Z</updated>
+    
+    <content type="html"><![CDATA[<div class="gallery-container" data-type="data" data-button="true" data-limit="10" data-first="10">    <div class="gallery-items">[{"url":"https://87c80b6.webp.li/i/2025/07/15/itf22-pj.png","alt":"087_85926694_p1.png","title":""},{"url":"https://87c80b6.webp.li/i/2025/07/15/itf24-80.png","alt":"089_85176383_p0.png","title":""},{"url":"https://87c80b6.webp.li/i/2025/07/15/itf24-9n.jpg","alt":"077_88071812_p0.jpg","title":""},{"url":"https://87c80b6.webp.li/i/2025/07/15/itf25-5g.png","alt":"047_95755265_p0.png","title":""},{"url":"https://87c80b6.webp.li/i/2025/07/15/itf25-g1.png","alt":"062_91710269_p0.png","title":""},{"url":"https://87c80b6.webp.li/i/2025/07/15/itf25-8w.png","alt":"055_94052209_p0.png","title":""}]</div>  </div>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;div class=&quot;gallery-container&quot; data-type=&quot;data&quot; data-button=&quot;true&quot; data-limit=&quot;10&quot; data-first=&quot;10&quot;&gt;
+    &lt;div class=&quot;gallery-items&quot;&gt;[{&quot;url&quot;:&quot;</summary>
+      
+    
+    
+    
+    <category term="测试" scheme="https://ametoyuki098.github.io/categories/%E6%B5%8B%E8%AF%95/"/>
+    
+    
+    <category term="img" scheme="https://ametoyuki098.github.io/tags/img/"/>
+    
+  </entry>
+  
+  <entry>
     <title>test</title>
-    <link href="http://localhost:4000/2025/07/13/test/"/>
-    <id>http://localhost:4000/2025/07/13/test/</id>
+    <link href="https://ametoyuki098.github.io/2025/07/13/test/"/>
+    <id>https://ametoyuki098.github.io/2025/07/13/test/</id>
     <published>2025-07-12T23:52:52.000Z</published>
     <updated>2025-07-13T10:56:20.893Z</updated>
+    
+    <content type="html"><![CDATA[<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -i input.mp4 output.mp4 <span class="comment"># 这是ffmpeg的基础命令。</span></span><br><span class="line">magick <span class="comment"># 一个强大的命令行图片工具。</span></span><br><span class="line">pkg ins termux-api <span class="comment"># 安装此工具需先安装-termux-api插件，这样才能正常调用手机各类api。</span></span><br></pre></td></tr></table></figure>]]></content>
     
     
       
@@ -31,19 +58,21 @@
     
     
     
-    <category term="测试" scheme="http://localhost:4000/categories/%E6%B5%8B%E8%AF%95/"/>
+    <category term="测试" scheme="https://ametoyuki098.github.io/categories/%E6%B5%8B%E8%AF%95/"/>
     
     
-    <category term="termux" scheme="http://localhost:4000/tags/termux/"/>
+    <category term="termux" scheme="https://ametoyuki098.github.io/tags/termux/"/>
     
   </entry>
   
   <entry>
     <title>我的第一篇文章</title>
-    <link href="http://localhost:4000/2025/06/28/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/"/>
-    <id>http://localhost:4000/2025/06/28/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/</id>
+    <link href="https://ametoyuki098.github.io/2025/06/28/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/"/>
+    <id>https://ametoyuki098.github.io/2025/06/28/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/</id>
     <published>2025-06-28T09:26:01.000Z</published>
     <updated>2025-07-14T04:02:28.840Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="你好"><a href="#你好" class="headerlink" title="你好"></a>你好</h2><p><strong>这是我的第一篇文章</strong></p><blockquote><p>test</p><ul><li>test1</li></ul></blockquote><p>深夜的街道空无一人，路灯投下昏黄的光晕，将我的影子拉得很长。风卷起一片枯叶，在水泥地上摩擦出细碎的声响。远处传来几声犬吠，又很快归于沉寂。我抬头看了看天空，没有星星，只有一层薄雾般的云。这样的夜晚总让人想起一些往事——那些未完成的约定，没说出口的话，像这夜色一样，既清晰又模糊。</p>]]></content>
     
     
       
@@ -57,21 +86,23 @@
     
     
     
-    <category term="测试" scheme="http://localhost:4000/categories/%E6%B5%8B%E8%AF%95/"/>
+    <category term="测试" scheme="https://ametoyuki098.github.io/categories/%E6%B5%8B%E8%AF%95/"/>
     
     
-    <category term="文章" scheme="http://localhost:4000/tags/%E6%96%87%E7%AB%A0/"/>
+    <category term="文章" scheme="https://ametoyuki098.github.io/tags/%E6%96%87%E7%AB%A0/"/>
     
-    <category term="termux" scheme="http://localhost:4000/tags/termux/"/>
+    <category term="termux" scheme="https://ametoyuki098.github.io/tags/termux/"/>
     
   </entry>
   
   <entry>
     <title>My New Post</title>
-    <link href="http://localhost:4000/2025/06/28/My-New-Post/"/>
-    <id>http://localhost:4000/2025/06/28/My-New-Post/</id>
+    <link href="https://ametoyuki098.github.io/2025/06/28/My-New-Post/"/>
+    <id>https://ametoyuki098.github.io/2025/06/28/My-New-Post/</id>
     <published>2025-06-28T05:41:42.000Z</published>
     <updated>2025-06-28T05:42:22.503Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="你好世界"><a href="#你好世界" class="headerlink" title="你好世界"></a>你好世界</h1>]]></content>
     
     
       

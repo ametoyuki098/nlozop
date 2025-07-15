@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>photo,图片预览</title>
+      <link href="/2025/07/15/photo/"/>
+      <url>/2025/07/15/photo/</url>
+      
+        <content type="html"><![CDATA[<div class="gallery-container" data-type="data" data-button="true" data-limit="10" data-first="10">    <div class="gallery-items">[{"url":"https://87c80b6.webp.li/i/2025/07/15/itf22-pj.png","alt":"087_85926694_p1.png","title":""},{"url":"https://87c80b6.webp.li/i/2025/07/15/itf24-80.png","alt":"089_85176383_p0.png","title":""},{"url":"https://87c80b6.webp.li/i/2025/07/15/itf24-9n.jpg","alt":"077_88071812_p0.jpg","title":""},{"url":"https://87c80b6.webp.li/i/2025/07/15/itf25-5g.png","alt":"047_95755265_p0.png","title":""},{"url":"https://87c80b6.webp.li/i/2025/07/15/itf25-g1.png","alt":"062_91710269_p0.png","title":""},{"url":"https://87c80b6.webp.li/i/2025/07/15/itf25-8w.png","alt":"055_94052209_p0.png","title":""}]</div>  </div>]]></content>
+      
+      
+      <categories>
+          
+          <category> 测试 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> img </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>test</title>
       <link href="/2025/07/13/test/"/>
       <url>/2025/07/13/test/</url>
