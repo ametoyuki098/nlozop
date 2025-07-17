@@ -34,9 +34,9 @@
     <link href="https://ametoyuki098.github.io/test/"/>
     <id>https://ametoyuki098.github.io/test/</id>
     <published>2025-07-12T23:52:52.000Z</published>
-    <updated>2025-07-13T10:56:20.893Z</updated>
+    <updated>2025-07-17T03:48:43.013Z</updated>
     
-    <content type="html"><![CDATA[<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -i input.mp4 output.mp4 <span class="comment"># 这是ffmpeg的基础命令。</span></span><br><span class="line">magick <span class="comment"># 一个强大的命令行图片工具。</span></span><br><span class="line">pkg ins termux-api <span class="comment"># 安装此工具需先安装-termux-api插件，这样才能正常调用手机各类api。</span></span><br></pre></td></tr></table></figure>]]></content>
+    <content type="html"><![CDATA[<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -i input.mp4 output.mp4 <span class="comment"># 这是ffmpeg的基础命令。</span></span><br><span class="line">magick <span class="comment"># 一个强大的命令行图片工具。</span></span><br><span class="line">pkg ins termux-api <span class="comment"># 安装此工具需先安装-termux-api插件，这样才能正常调用手机各类api。</span></span><br></pre></td></tr></table></figure><div class="aplayer"      data-id="186016"      data-server="netease"      data-type="song"      data-mutex="true"      data-preload="auto"      data-theme="#3F51B5"></div>]]></content>
     
     
       
@@ -77,9 +77,9 @@
     <category term="测试" scheme="https://ametoyuki098.github.io/categories/%E6%B5%8B%E8%AF%95/"/>
     
     
-    <category term="termux" scheme="https://ametoyuki098.github.io/tags/termux/"/>
-    
     <category term="文章" scheme="https://ametoyuki098.github.io/tags/%E6%96%87%E7%AB%A0/"/>
+    
+    <category term="termux" scheme="https://ametoyuki098.github.io/tags/termux/"/>
     
   </entry>
   
