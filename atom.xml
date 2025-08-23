@@ -6,7 +6,7 @@
   <link href="https://ametoyuki098.github.io/atom.xml" rel="self"/>
   
   <link href="https://ametoyuki098.github.io/"/>
-  <updated>2025-07-16T13:37:12.705Z</updated>
+  <updated>2025-08-23T03:33:15.919Z</updated>
   <id>https://ametoyuki098.github.io/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>termux-hexo</title>
+    <link href="https://ametoyuki098.github.io/termux-hexo/"/>
+    <id>https://ametoyuki098.github.io/termux-hexo/</id>
+    <published>2025-08-23T03:27:35.000Z</published>
+    <updated>2025-08-23T03:33:15.919Z</updated>
+    
+    <content type="html"><![CDATA[<p>介绍：此博文记录在安卓手机（平板）termux中安装配置hexo博客的过程，主题使用以及远程部署。</p><h2 id="准备工作："><a href="#准备工作：" class="headerlink" title="准备工作："></a>准备工作：</h2><p>开始之前，请确保已准备好以下内容：</p><ul><li>✅ 安装termux 在<a href="https://f-droid.org/packages/com.termux">F-Droid</a>商店，或<a href="https://github.com/termux/termux-app">GitHub</a>仓库中安装 （也可以安装修改版的zerotermux它更适合操作）</li><li>🔲 一个域名 （可选）</li><li>✅ GitHub账号</li><li>🔲 Cloudflare （可选）</li></ul><h2 id="安装必要环境"><a href="#安装必要环境" class="headerlink" title="安装必要环境"></a>安装必要环境</h2><ul><li><input disabled="" type="checkbox"> 更新Termux的包信息和版本<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pkg update &amp;&amp; pkg upgrade</span><br></pre></td></tr></table></figure>在这个过程中遇到确认请求一律回车。可能有速度慢等网络问题，可以更换镜像源。</li><li><input disabled="" type="checkbox"> 在上个步骤完成后，执行以下命令安装nodejs</li></ul><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pkg install nodejs-lts</span><br></pre></td></tr></table></figure><h3 id="npm安装hexo"><a href="#npm安装hexo" class="headerlink" title="npm安装hexo"></a>npm安装hexo</h3><p><code>npm install hexo-cli -g</code></p><h3 id="初始化hexo"><a href="#初始化hexo" class="headerlink" title="初始化hexo"></a>初始化hexo</h3><ol><li>使用<code>mkdir youname</code>创建一个文件夹</li><li><code>cd youname</code> 进入此文件夹</li><li>在后续之前执行<code>hexo -v</code>查看是否安装成功</li><li>再执行<code>hexo init</code>进行初始化创建</li><li><code>npm install</code>安装所需依赖</li></ol><p><strong>你也可以依次执行官方的安装操作</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-cli -g</span><br><span class="line">hexo init blog</span><br><span class="line">cd blog</span><br><span class="line">npm install</span><br><span class="line">hexo server</span><br></pre></td></tr></table></figure><p><u> blog只是一个示例，你可以自定义成其他。如demobolg myblog…..</u></p><h3 id="生成启动本地预览"><a href="#生成启动本地预览" class="headerlink" title="生成启动本地预览"></a>生成启动本地预览</h3><p><code>hexo generate</code>生成静态文件<br><code>hexo server</code>开启本地预览<br>执行完成后会返回一个预览地址<u><a href="http://localhost:4000/">http://localhost:4000/</a></u>在浏览器打开，就能看见博客。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;介绍：此博文记录在安卓手机（平板）termux中安装配置hexo博客的过程，主题使用以及远程部署。&lt;/p&gt;
+&lt;h2 id=&quot;准备工作：&quot;&gt;&lt;a href=&quot;#准备工作：&quot; class=&quot;headerlink&quot; title=&quot;准备工作：&quot;&gt;&lt;/a&gt;准备工作：&lt;/h2&gt;&lt;p&gt;开</summary>
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>Myblog</title>
