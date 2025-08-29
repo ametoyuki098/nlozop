@@ -1,4 +1,4 @@
-<?xml-stylesheet href="~/hexo/source/pretty-feed-v3.xsl" type="text/xsl"?>
+<?xml-stylesheet href="pretty-feed-v3.xsl" type="text/xsl"?>
 <?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0"
   xmlns:atom="http://www.w3.org/2005/Atom"
