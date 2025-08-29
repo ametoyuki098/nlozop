@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xsl" href="atom_style.xsl"?>
+<?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>给x许</title>
   
@@ -6,7 +6,7 @@
   <link href="https://ametoyuki098.github.io/atom.xml" rel="self"/>
   
   <link href="https://ametoyuki098.github.io/"/>
-  <updated>8/23/2025, 6:16:47 PM</updated>
+  <updated>2025-08-23T10:16:47.981Z</updated>
   <id>https://ametoyuki098.github.io/</id>
   
   <author>
@@ -33,7 +33,6 @@
       
     
     
-    <content src="https://87c80b6.webp.li/i/2025/07/11/1czot3-d7.png" type="image"/>
     
     
   </entry>
@@ -51,7 +50,6 @@
     <summary type="html">Here&#39;s something encrypted, password is required to continue reading.</summary>
     
     
-    <content src="https://87c80b6.webp.li/i/2025/07/11/1czot8-r6.png" type="image"/>
     
     
   </entry>
@@ -72,7 +70,8 @@
       
     
     
-    <content src="https://87c80b6.webp.li/i/2025/07/11/1czotb-gf.png" type="image"/>
+    
+    <category term="测试" scheme="https://ametoyuki098.github.io/categories/%E6%B5%8B%E8%AF%95/"/>
     
     
     <category term="termux" scheme="https://ametoyuki098.github.io/tags/termux/"/>
@@ -99,7 +98,8 @@
       
     
     
-    <content src="https://87c80b6.webp.li/i/2025/07/11/1czota-bm.png" type="image"/>
+    
+    <category term="测试" scheme="https://ametoyuki098.github.io/categories/%E6%B5%8B%E8%AF%95/"/>
     
     
     <category term="termux" scheme="https://ametoyuki098.github.io/tags/termux/"/>
@@ -124,7 +124,6 @@
       
     
     
-    <content src="https://87c80b6.webp.li/i/2025/07/11/1czota-cx.png" type="image"/>
     
     
   </entry>
