@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="atom.xsl"?>
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xsl" href="atom.xsl"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>给x许</title>
   
@@ -34,7 +33,7 @@
       
     
     
-    <content src="https://87c80b6.webp.li/i/2025/07/11/1czot9-vp.png" type="image"/>
+    <content src="https://87c80b6.webp.li/i/2025/07/11/1czot8-r6.png" type="image"/>
     
     
   </entry>
@@ -55,7 +54,7 @@
       
     
     
-    <content src="https://87c80b6.webp.li/i/2025/07/11/1czota-cx.png" type="image"/>
+    <content src="https://87c80b6.webp.li/i/2025/07/11/1czotb-gf.png" type="image"/>
     
     
   </entry>
@@ -76,7 +75,7 @@
       
     
     
-    <content src="https://87c80b6.webp.li/i/2025/07/11/1czotb-gf.png" type="image"/>
+    <content src="https://87c80b6.webp.li/i/2025/07/11/1czot3-d7.png" type="image"/>
     
     
     <category term="termux" scheme="https://ametoyuki098.github.io/tags/termux/"/>
@@ -103,7 +102,7 @@
       
     
     
-    <content src="https://87c80b6.webp.li/i/2025/07/11/1czot3-d7.png" type="image"/>
+    <content src="https://87c80b6.webp.li/i/2025/07/11/1czot9-vp.png" type="image"/>
     
     
     <category term="termux" scheme="https://ametoyuki098.github.io/tags/termux/"/>
@@ -128,7 +127,7 @@
       
     
     
-    <content src="https://87c80b6.webp.li/i/2025/07/11/1czot9-vp.png" type="image"/>
+    <content src="https://87c80b6.webp.li/i/2025/07/11/1czot8-r6.png" type="image"/>
     
     
   </entry>
