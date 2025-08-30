@@ -25,7 +25,7 @@
         
       
       
-      <enclosure url="https://87c80b6.webp.li/i/2025/07/11/1czotb-gf.png" type="image"/>
+      <enclosure url="https://87c80b6.webp.li/i/2025/07/11/1czot9-vp.png" type="image"/>
       
       
       <content:encoded><![CDATA[<p>介绍：此博文记录在安卓手机（平板）termux中安装配置hexo博客的过程，主题使用以及远程部署。</p><h2 id="准备工作："><a href="#准备工作：" class="headerlink" title="准备工作："></a>准备工作：</h2><p>开始之前，请确保已准备好以下内容：</p><ul><li>✅ 安装termux 在<a href="https://f-droid.org/packages/com.termux">F-Droid</a>商店，或<a href="https://github.com/termux/termux-app">GitHub</a>仓库中安装 （也可以安装修改版的zerotermux它更适合操作）</li><li>🔲 一个域名 （可选）</li><li>✅ GitHub账号</li><li>🔲 Cloudflare （可选）</li></ul><h2 id="安装必要环境"><a href="#安装必要环境" class="headerlink" title="安装必要环境"></a>安装必要环境</h2><ul><li><input checked="" disabled="" type="checkbox"> 更新Termux的包信息和版本</li></ul><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pkg update &amp;&amp; pkg upgrade</span><br></pre></td></tr></table></figure><p>在这个过程中遇到确认请求一律回车。可能有速度慢等网络问题，可以更换镜像源。</p><ul><li><input disabled="" type="checkbox"> 在上个步骤完成后，执行以下命令安装nodejs</li></ul><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pkg install nodejs-lts</span><br></pre></td></tr></table></figure><h3 id="npm安装hexo"><a href="#npm安装hexo" class="headerlink" title="npm安装hexo"></a>npm安装hexo</h3><p><code>npm install hexo-cli -g</code></p><h3 id="初始化hexo"><a href="#初始化hexo" class="headerlink" title="初始化hexo"></a>初始化hexo</h3><ol><li>使用<code>mkdir youname</code>创建一个文件夹</li><li><code>cd youname</code> 进入此文件夹</li><li>在后续之前执行<code>hexo -v</code>查看是否安装成功</li><li>再执行<code>hexo init</code>进行初始化创建</li><li><code>npm install</code>安装所需依赖</li></ol><p><strong>你也可以依次执行官方的安装操作</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-cli -g</span><br><span class="line">hexo init blog</span><br><span class="line">cd blog</span><br><span class="line">npm install</span><br><span class="line">hexo server</span><br></pre></td></tr></table></figure><p><u> blog只是一个示例，你可以自定义成其他。如demobolg myblog…..</u></p><h3 id="生成启动本地预览"><a href="#生成启动本地预览" class="headerlink" title="生成启动本地预览"></a>生成启动本地预览</h3><p><code>hexo generate</code>生成静态文件<br><code>hexo server</code>开启本地预览<br>执行完成后会返回一个预览地址<u><a href="http://localhost:4000/">http://localhost:4000/</a></u>在浏览器打开，就能看见博客。</p>]]></content:encoded>
@@ -39,13 +39,16 @@
       <guid>https://ametoyuki098.github.io/Myblog/</guid>
       <pubDate>2025-07-16T13:37:12.000Z</pubDate>
       
-      <description>Here&#39;s something encrypted, password is required to continue reading.</description>
+        
+        
+      <description>&lt;h2 id=&quot;测试&quot;&gt;&lt;a href=&quot;#测试&quot; class=&quot;headerlink&quot; title=&quot;测试&quot;&gt;&lt;/a&gt;测试&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://87c80b6.webp.li/i/2025/08/28/18fxp2-vf.jpg&quot; alt=&quot;598</description>
+        
       
       
-      <enclosure url="https://87c80b6.webp.li/i/2025/07/11/1czot3-d7.png" type="image"/>
+      <enclosure url="https://87c80b6.webp.li/i/2025/07/11/1czota-cx.png" type="image"/>
       
       
-      <content:encoded><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">  <script id="hbeData" type="hbeData" data-hmacdigest="749c165fa10f61690708181e46dfb27509a7ed5b1aedf0121831b1ae04cd3b73">10d79030e8222445804370796b90fca106f15dd47c03b7cc3ac7fb0590359f379e450e1688de1b1e5be227e9b0ed441dff4a970da4718c7384152a87c5974d7bd91963b14ff9264f4c4c076f802d826ca75f38a01b9d5a1feb65d366ffe6fff8ead18d503f91683a59c4681e2c556cca49d9f4993dc89b9c2b64c04a593bc87e5271cacf234f2ee3f642fd41e8f8d60db778cd5c49bb0460e1487b8a8a3800f2b3be464639b6c18cb569ace3c984ffe845085c587be03a9ea0eb2d5720e9d7dd5ed17cd5fdf6d7c9d57975292f1eca14e33b13034361f2968cff59eb871ccd394581b4d226b7edc28c2825c52497c89689baf64f751b56515bb29025d3a9a3230487231a7af793c80976e4bfef2321650689acd434e0af40acf259727a4f3848a2de9d2d2ff4c7abf26f60f0a27b68d550a43713ea61c8cf8c0e4b64558348c25b8a684aeafc2d314f7456a3286c8ac1fd0f46f41db4868ebcdf8a9e817036e5565ee1bb06b8299515848f921e23f7092f7b07bec1b366bed3661e75791f63d22e2bb1511a14fa1e840b684af8e3226c6c32d74042dc3df61e77149e1a5436758daeb5c46e92aa2b3e38c97fd53e1065bf2045933f01b345423ac20db7ff82a20a023e121a63f879c12c9ed6a2ede4156617297238ff3311e9e47bcb2b195d8dda74dee06773ff941a8968bb98dbe134985ca50a62bd4b4f21f17d39098ae31f56905fec0f0aba6c8c721f4b8a8c05267fe306133f0f4822472cf84fc8be9dd2caf0200dedd323f2d09e30897a229b7d4421eac077664647eaf61480dc7d085546eee62329f10cbe291f81e12fbf9b2fa976aa0cc5fbd8239a17e91dc53f6421d0c78ef5c6908129e28b8470412303ac44dd36ed0be74ca937f96f59b7f9c1e0be12507456d5d20d997528be2f286047327d34f60bdf6cf9e418eb1c6791b70eb273fda43a04a0c4e0d220c2f0e43871</script>  <div class="hbe hbe-content">    <div class="hbe hbe-input hbe-input-default">      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">        <span class="hbe hbe-input-label-content hbe-input-label-content-default">Hey, password is required here.</span>      </label>    </div>  </div></div><script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content:encoded>
+      <content:encoded><![CDATA[<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><p><img src="https://87c80b6.webp.li/i/2025/08/28/18fxp2-vf.jpg" alt="5983397134688438570.jpg"><br><img src="https://87c80b6.webp.li/i/2025/08/28/18fxp5-eh.jpg" alt="5983397134688438572.jpg"><br><img src="https://87c80b6.webp.li/i/2025/08/28/18fxp6-4a.jpg" alt="5983397134688438571.jpg"><br><img src="https://87c80b6.webp.li/i/2025/08/28/18fxp6-tr.jpg" alt="5983397134688438569.jpg"><br><img src="https://87c80b6.webp.li/i/2025/08/28/18fxp7-05.jpg" alt="5983397134688438568.jpg"><br><img src="https://87c80b6.webp.li/i/2025/08/28/18fxp7-e1.jpg" alt="5983397134688438567.jpg"></p>]]></content:encoded>
       
       
     </item>
@@ -62,7 +65,7 @@
         
       
       
-      <enclosure url="https://87c80b6.webp.li/i/2025/07/11/1czot7-l5.png" type="image"/>
+      <enclosure url="https://87c80b6.webp.li/i/2025/07/11/1czotb-gf.png" type="image"/>
       
       
       <content:encoded><![CDATA[<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -i input.mp4 output.mp4 <span class="comment"># 这是ffmpeg的基础命令。</span></span><br><span class="line">magick <span class="comment"># 一个强大的命令行图片工具。</span></span><br><span class="line">pkg ins termux-api <span class="comment"># 安装此工具需先安装-termux-api插件，这样才能正常调用手机各类api。</span></span><br></pre></td></tr></table></figure><div class="aplayer"      data-id="1394167216"      data-server="netease"      data-type="song"      data-mutex="true"     data-autoplay="true"     data-preload="auto"      data-theme="#3F51B5"></div>]]></content:encoded>
@@ -88,15 +91,15 @@
         
       
       
-      <enclosure url="https://87c80b6.webp.li/i/2025/07/11/1czota-bm.png" type="image"/>
+      <enclosure url="https://87c80b6.webp.li/i/2025/07/11/1czot3-d7.png" type="image"/>
       
       
       <content:encoded><![CDATA[<h2 id="你好"><a href="#你好" class="headerlink" title="你好"></a>你好</h2><p><strong>这是我的第一篇文章</strong></p><blockquote><p>test</p><ul><li>test1</li></ul></blockquote><p>深夜的街道空无一人，路灯投下昏黄的光晕，将我的影子拉得很长。风卷起一片枯叶，在水泥地上摩擦出细碎的声响。远处传来几声犬吠，又很快归于沉寂。我抬头看了看天空，没有星星，只有一层薄雾般的云。这样的夜晚总让人想起一些往事——那些未完成的约定，没说出口的话，像这夜色一样，既清晰又模糊。</p>]]></content:encoded>
       
       
-      <category domain="https://ametoyuki098.github.io/tags/%E6%96%87%E7%AB%A0/">文章</category>
-      
       <category domain="https://ametoyuki098.github.io/tags/termux/">termux</category>
+      
+      <category domain="https://ametoyuki098.github.io/tags/%E6%96%87%E7%AB%A0/">文章</category>
       
     </item>
     
@@ -112,7 +115,7 @@
         
       
       
-      <enclosure url="https://87c80b6.webp.li/i/2025/07/11/1czot8-r6.png" type="image"/>
+      <enclosure url="https://87c80b6.webp.li/i/2025/07/11/1czot9-vp.png" type="image"/>
       
       
       <content:encoded><![CDATA[<h1 id="你好世界"><a href="#你好世界" class="headerlink" title="你好世界"></a>你好世界</h1>]]></content:encoded>
