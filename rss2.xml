@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet href="pretty-feed-v3.xsl" type="text/xsl"?>
+<?xml-stylesheet href="rss2.xsl" type="text/xsl"?>
 <rss version="2.0"
   xmlns:atom="http://www.w3.org/2005/Atom"
   xmlns:content="http://purl.org/rss/1.0/modules/content/">
@@ -104,9 +104,9 @@
       <category domain="https://ametoyuki098.github.io/categories/%E6%B5%8B%E8%AF%95/">测试</category>
       
       
-      <category domain="https://ametoyuki098.github.io/tags/%E6%96%87%E7%AB%A0/">文章</category>
-      
       <category domain="https://ametoyuki098.github.io/tags/termux/">termux</category>
+      
+      <category domain="https://ametoyuki098.github.io/tags/%E6%96%87%E7%AB%A0/">文章</category>
       
       
       <comments>https://ametoyuki098.github.io/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/#disqus_thread</comments>
