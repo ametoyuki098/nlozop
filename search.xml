@@ -40,7 +40,7 @@
       <link href="/nlozop/pixiv/"/>
       <url>/nlozop/pixiv/</url>
       
-        <content type="html"><![CDATA[<p><img src="https://87c80b6.webp.li/i/2025/10/23/r6izz-x9.png" alt="0 (2).png"></p>]]></content>
+        <content type="html"><![CDATA[<p><img src="https://87c80b6.webp.li/i/2025/10/23/r6izz-x9.png" alt="0 (2).png"></p><div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">test1 1</button><button type="button" class="tab">test1 2</button><button type="button" class="tab">test1 3</button></div><div class="tab-contents"><div class="tab-item-content active"><p><strong>This is Tab 1.</strong></p></div><div class="tab-item-content"><p><strong>This is Tab 2.</strong></p></div><div class="tab-item-content"><p><strong>This is Tab 3.</strong></p></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>]]></content>
       
       
       
