@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xsl:stylesheet version="3.0"
+<xsl:stylesheet version="1.0"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
   xmlns:atom="http://www.w3.org/2005/Atom">
 
-  <xsl:output method="html" version="4.0" encoding="UTF-8" indent="yes"/>
+  <xsl:output method="html" encoding="UTF-8" indent="yes"/>
 
   <!-- Feed 信息 -->
   <xsl:variable name="feedTitle" select="/atom:feed/atom:title"/>
@@ -25,17 +25,36 @@
     </xsl:choose>
   </xsl:template>
 
-  <!-- ② 截断纯文本摘要（不破坏 HTML） -->
-  <xsl:template name="truncate-html-text">
-    <xsl:param name="html"/>
-    <xsl:param name="length" select="200"/>
-
-    <!-- 去掉所有 HTML 标签 -->
-    <xsl:variable name="text" select="replace($html, '&lt;[^&gt;]+&gt;', '')"/>
+  <!-- ② 去除 HTML 标签（XSLT 1.0 递归版） -->
+  <xsl:template name="strip-tags">
+    <xsl:param name="text"/>
 
     <xsl:choose>
-      <xsl:when test="string-length($text) > $length">
-        <xsl:value-of select="concat(substring($text, 1, $length), '...')"/>
+      <xsl:when test="contains($text, '&lt;')">
+        <!-- 输出标签前的文本 -->
+        <xsl:value-of select="substring-before($text, '&lt;')"/>
+
+        <!-- 递归处理标签后的文本 -->
+        <xsl:call-template name="strip-tags">
+          <xsl:with-param name="text" select="substring-after($text, '&gt;')"/>
+        </xsl:call-template>
+      </xsl:when>
+
+      <xsl:otherwise>
+        <xsl:value-of select="$text"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+
+  <!-- ③ 截断文本（XSLT 1.0 版本） -->
+  <xsl:template name="truncate">
+    <xsl:param name="text"/>
+    <xsl:param name="length"/>
+
+    <xsl:choose>
+      <xsl:when test="string-length($text) &gt; $length">
+        <xsl:value-of select="substring($text, 1, $length)"/>
+        <xsl:text>...</xsl:text>
       </xsl:when>
       <xsl:otherwise>
         <xsl:value-of select="$text"/>
@@ -52,38 +71,13 @@
         <script src="https://cdn.tailwindcss.com"></script>
         <title><xsl:value-of select="$feedTitle" disable-output-escaping="yes"/></title>
 
-        <script>
-          tailwind.config = {
-            theme: {
-              extend: {
-                colors: {
-                  primary: '#4f46e5',
-                  accent: '#e879f9',
-                  lightBg: 'rgba(250, 250, 252, 0.8)',
-                  lightCard: 'rgba(255, 255, 255, 0.9)'
-                },
-                fontFamily: {
-                  sans: ['Inter', 'system-ui', 'sans-serif']
-                }
-              }
-            }
-          }
-        </script>
-
-        <style type="text/tailwindcss">
-          @layer utilities {
-            .text-gradient {
-              background-clip: text;
-              -webkit-background-clip: text;
-              -webkit-text-fill-color: transparent;
-            }
-            .summary-img {
-              max-width: 100%;
-              height: auto;
-              border-radius: 4px;
-              margin: 8px 0;
-              display: block;
-            }
+        <style>
+          .summary-img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+            margin: 8px 0;
+            display: block;
           }
         </style>
       </head>
@@ -93,12 +87,12 @@
 
         <div class="fixed inset-0 bg-white/20 z-0"></div>
 
-        <main class="container mx-auto px-4 py-8 max-w-4xl relative z-10 bg-lightBg bg-blur rounded-xl shadow-xl">
+        <main class="container mx-auto px-4 py-8 max-w-4xl relative z-10 bg-white/70 backdrop-blur rounded-xl shadow-xl">
 
           <!-- Header -->
           <header class="mb-8 pb-6 border-b border-gray-200/80">
             <a href="{$feedLink}" target="_blank" class="flex items-center gap-2">
-              <h1 class="text-2xl md:text-3xl font-bold bg-gradient-to-r from-primary to-accent text-gradient">
+              <h1 class="text-2xl md:text-3xl font-bold text-indigo-600">
                 <xsl:value-of select="$feedTitle" disable-output-escaping="yes"/>
               </h1>
             </a>
@@ -110,11 +104,11 @@
           <!-- Feed Entries -->
           <section class="space-y-6">
             <xsl:for-each select="/atom:feed/atom:entry">
-              <article class="bg-lightCard bg-blur rounded-lg p-5 border border-gray-200/50">
+              <article class="bg-white/80 backdrop-blur rounded-lg p-5 border border-gray-200/50">
 
                 <details class="group">
                   <summary class="flex items-center justify-between cursor-pointer list-none">
-                    <h2 class="text-lg md:text-xl font-semibold text-gray-900 group-hover:text-primary transition-colors">
+                    <h2 class="text-lg md:text-xl font-semibold text-gray-900 group-hover:text-indigo-600 transition-colors">
                       <xsl:value-of select="atom:title" disable-output-escaping="yes"/>
                     </h2>
                     <time class="text-sm text-gray-500">
@@ -134,16 +128,23 @@
                       <xsl:value-of select="$html" disable-output-escaping="yes"/>
                     </div>
 
-                    <!-- 显示截断后的纯文本摘要 -->
+                    <!-- 生成纯文本摘要 -->
+                    <xsl:variable name="plain">
+                      <xsl:call-template name="strip-tags">
+                        <xsl:with-param name="text" select="$html"/>
+                      </xsl:call-template>
+                    </xsl:variable>
+
+                    <!-- 截断摘要 -->
                     <p class="summary-text text-gray-600">
-                      <xsl:call-template name="truncate-html-text">
-                        <xsl:with-param name="html" select="$html"/>
+                      <xsl:call-template name="truncate">
+                        <xsl:with-param name="text" select="$plain"/>
                         <xsl:with-param name="length" select="200"/>
                       </xsl:call-template>
                     </p>
 
                     <a href="{atom:link/@href}" target="_blank"
-                      class="inline-flex items-center gap-1 text-primary hover:text-primary/80 font-medium mt-3">
+                      class="inline-flex items-center gap-1 text-indigo-600 hover:text-indigo-400 font-medium mt-3">
                       阅读原文 →
                     </a>
 
@@ -155,7 +156,7 @@
           </section>
 
           <footer class="mt-12 pt-6 border-t border-gray-200/80 text-center text-gray-500 text-sm">
-            <p>由 <a href="https://rss.beauty" target="_blank" class="text-primary hover:underline">RSS.Beauty</a> 样式优化</p>
+            <p>由 <a href="https://rss.beauty" target="_blank" class="text-indigo-600 hover:underline">RSS.Beauty</a> 样式优化</p>
           </footer>
 
         </main>
