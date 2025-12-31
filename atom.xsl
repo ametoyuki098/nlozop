@@ -6,23 +6,18 @@
   <xsl:variable name="feedDesc" select="/atom:feed/atom:subtitle | /rss/channel/description"/>
   <xsl:variable name="feedLink" select="/atom:feed/atom:link[@rel='alternate']/@href | /rss/channel/link"/>
 
-  <!-- 核心修复：原生语法保留<img>并直接加样式，不依赖扩展函数 -->
+  <!-- 处理摘要：保留<img>并加样式，过滤其他HTML标签 -->
   <xsl:template name="process-summary">
     <xsl:param name="text"/>
     <xsl:choose>
-      <!-- 匹配<img>标签，直接添加class样式 -->
       <xsl:when test="contains($text, '&lt;img ')">
-        <!-- 输出<img>前的纯文本 -->
         <xsl:value-of select="substring-before($text, '&lt;img ')"/>
-        <!-- 提取<img>标签内容，嵌入class -->
         <xsl:variable name="imgContent" select="substring-before(substring-after($text, '&lt;img '), '&gt;')"/>
         <xsl:value-of select="concat('&lt;img class=&quot;summary-img&quot; ', $imgContent, '&gt;')" disable-output-escaping="yes"/>
-        <!-- 继续处理剩余内容 -->
         <xsl:call-template name="process-summary">
           <xsl:with-param name="text" select="substring-after(substring-after($text, '&lt;img '), '&gt;')"/>
         </xsl:call-template>
       </xsl:when>
-      <!-- 过滤其他HTML标签 -->
       <xsl:when test="contains($text, '&lt;')">
         <xsl:value-of select="substring-before($text, '&lt;')"/>
         <xsl:call-template name="process-summary">
@@ -35,7 +30,7 @@
     </xsl:choose>
   </xsl:template>
 
-  <!-- 截断文本（250字，原生语法无兼容问题） -->
+  <!-- 截断文本（250字） -->
   <xsl:template name="truncate-text">
     <xsl:param name="text"/>
     <xsl:param name="length" select="250"/>
@@ -64,7 +59,7 @@
                   primary: '#4f46e5',
                   accent: '#e879f9',
                   lightBg: 'rgba(250, 250, 252, 0.3)',
-                  lightCard: 'rgba(255, 255, 255, 0.6)'
+                  lightCard: 'rgba(255, 255, 255, 0.5)'
                 },
                 fontFamily: {
                   sans: ['Inter', 'system-ui', 'sans-serif']
@@ -94,10 +89,9 @@
               width: 100%;
             }
             .bg-blur {
-              backdrop-filter: blur(5px);
-              -webkit-backdrop-filter: blur(5px);
+              backdrop-filter: blur(7px);
+              -webkit-backdrop-filter: blur(7px);
             }
-            /* 折叠交互优化 */
             details summary::-webkit-details-marker {
               display: none;
             }
@@ -110,7 +104,6 @@
             details[open] summary::after {
               transform: rotate(180deg);
             }
-            /* 图片适配样式（兼容所有浏览器） */
             .summary-img {
               max-width: 100%;
               height: auto;
@@ -164,7 +157,6 @@
                   </summary>
                   <div class="mt-4 pt-4 border-t border-gray-200/50 text-gray-700">
                     <div class="mb-4">
-                      <!-- 处理摘要：保留图片+过滤标签+截断250字 -->
                       <xsl:variable name="processedText">
                         <xsl:call-template name="process-summary">
                           <xsl:with-param name="text" select="atom:summary | atom:content"/>
@@ -182,7 +174,7 @@
               </article>
             </xsl:for-each>
 
-            <!-- RSS条目适配 -->
+            <!-- RSS条目适配（已修正标签嵌套） -->
             <xsl:for-each select="/rss/channel/item">
               <article class="bg-lightCard bg-blur rounded-lg p-5 hover:shadow-lg hover:shadow-primary/5 transition-all border border-gray-200/50">
                 <details class="group">
@@ -198,7 +190,6 @@
                   </summary>
                   <div class="mt-4 pt-4 border-t border-gray-200/50 text-gray-700">
                     <div class="mb-4">
-                      <!-- 处理摘要：保留图片+过滤标签+截断250字 -->
                       <xsl:variable name="processedText">
                         <xsl:call-template name="process-summary">
                           <xsl:with-param name="text" select="description"/>
@@ -206,8 +197,7 @@
                       </xsl:variable>
                       <xsl:call-template name="truncate-text">
                         <xsl:with-param name="text" select="$processedText"/>
-                      </xsl:with-param>
-                    </xsl:call-template>
+                      </xsl:call-template>
                     </div>
                     <a href="{link}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-primary hover:text-primary/80 font-medium">
                       阅读原文 →
