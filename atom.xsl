@@ -11,12 +11,12 @@
   <xsl:template name="process-summary">
     <xsl:param name="text"/>
     <xsl:choose>
-      <xsl:when test="contains($text, '&lt;img ')">
-        <xsl:value-of select="substring-before($text, '&lt;img ')"/>
-        <xsl:variable name="imgAttrs" select="substring-before(substring-after($text, '&lt;img '), '&gt;')"/>
-        <xsl:value-of select="concat('&lt;img class=&quot;summary-img&quot; ', $imgAttrs, ' /&gt;')" disable-output-escaping="yes"/>
+      <xsl:when test="contains($text, '<img ')">
+        <xsl:value-of select="substring-before($text, '<img ')"/>
+        <xsl:variable name="imgAttrs" select="substring-before(substring-after($text, '<img '), '>')"/>
+        <xsl:value-of select="concat('<img class=&quot;summary-img&quot; ', $imgAttrs, ' />')" disable-output-escaping="yes"/>
         <xsl:call-template name="process-summary">
-          <xsl:with-param name="text" select="substring-after(substring-after($text, '&lt;img '), '&gt;')"/>
+          <xsl:with-param name="text" select="substring-after(substring-after($text, '<img '), '>')"/>
         </xsl:call-template>
       </xsl:when>
       <xsl:when test="contains($text, '&lt;')">
@@ -115,7 +115,7 @@
           }
         </style>
       </head>
-      <body class="min-h-screen font-sans bg-cover bg-fixed bg-center" style="background-image: url('https://87c80b6.webp.li/i/2025/12/31/st6c2h-9mcj.png');">
+      <body class="min-h-screen font-sans bg-cover bg-fixed bg-center" style="background-image: url('https://picsum.photos/id/1059/1920/1080');">
         <div class="fixed inset-0 bg-white/20 z-0"></div>
         
         <main class="container mx-auto px-4 py-8 max-w-4xl relative z-10 bg-lightBg bg-blur rounded-xl shadow-xl">
