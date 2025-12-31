@@ -2,28 +2,23 @@
 <xsl:stylesheet version="3.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:atom="http://www.w3.org/2005/Atom">
   <xsl:output method="html" version="4.0" encoding="UTF-8" indent="yes"/>
 
-  <!-- 仅保留Atom Feed的变量 -->
+  <!-- Atom Feed变量 -->
   <xsl:variable name="feedTitle" select="/atom:feed/atom:title"/>
   <xsl:variable name="feedDesc" select="/atom:feed/atom:subtitle"/>
   <xsl:variable name="feedLink" select="/atom:feed/atom:link[@rel='alternate']/@href"/>
 
-  <!-- 修复：只保留<img>标签，过滤所有其他HTML标签（含<p>） -->
+  <!-- 处理摘要：保留<img>、过滤冗余标签 -->
   <xsl:template name="process-summary">
     <xsl:param name="text"/>
     <xsl:choose>
-      <!-- 匹配并保留完整<img>标签 -->
       <xsl:when test="contains($text, '&lt;img ')">
-        <!-- 输出<img>前的纯文本 -->
         <xsl:value-of select="substring-before($text, '&lt;img ')"/>
-        <!-- 提取并保留<img>标签（自动补全闭合，适配HTML解析） -->
         <xsl:variable name="imgAttrs" select="substring-before(substring-after($text, '&lt;img '), '&gt;')"/>
         <xsl:value-of select="concat('&lt;img class=&quot;summary-img&quot; ', $imgAttrs, ' /&gt;')" disable-output-escaping="yes"/>
-        <!-- 继续处理剩余内容 -->
         <xsl:call-template name="process-summary">
           <xsl:with-param name="text" select="substring-after(substring-after($text, '&lt;img '), '&gt;')"/>
         </xsl:call-template>
       </xsl:when>
-      <!-- 过滤所有其他HTML标签 -->
       <xsl:when test="contains($text, '&lt;')">
         <xsl:value-of select="substring-before($text, '&lt;')"/>
         <xsl:call-template name="process-summary">
@@ -36,7 +31,7 @@
     </xsl:choose>
   </xsl:template>
 
-  <!-- 截断文本（250字） -->
+  <!-- 截断文本（250字，原生语法） -->
   <xsl:template name="truncate-text">
     <xsl:param name="text"/>
     <xsl:param name="length" select="250"/>
@@ -120,7 +115,7 @@
           }
         </style>
       </head>
-      <body class="min-h-screen font-sans bg-cover bg-fixed bg-center" style="background-image: url('https://picsum.photos/id/1059/1920/1080');">
+      <body class="min-h-screen font-sans bg-cover bg-fixed bg-center" style="background-image: url('https://87c80b6.webp.li/i/2025/12/31/st6c2h-9mcj.png');">
         <div class="fixed inset-0 bg-white/20 z-0"></div>
         
         <main class="container mx-auto px-4 py-8 max-w-4xl relative z-10 bg-lightBg bg-blur rounded-xl shadow-xl">
@@ -147,7 +142,7 @@
           </header>
 
           <section class="space-y-6">
-            <!-- 仅保留Atom条目适配 -->
+            <!-- 仅Atom条目适配 -->
             <xsl:for-each select="/atom:feed/atom:entry">
               <article class="bg-lightCard bg-blur rounded-lg p-5 hover:shadow-lg hover:shadow-primary/5 transition-all border border-gray-200/50">
                 <details class="group">
@@ -163,15 +158,15 @@
                   </summary>
                   <div class="mt-4 pt-4 border-t border-gray-200/50 text-gray-700">
                     <div class="mb-4">
+                      <!-- 标准模板调用语法 -->
                       <xsl:variable name="processedText">
                         <xsl:call-template name="process-summary">
                           <xsl:with-param name="text" select="atom:summary | atom:content"/>
                         </xsl:call-template>
                       </xsl:variable>
-                      <!-- 开启转义，让浏览器解析<img>标签 -->
-                      <xsl:value-of select="xsl:call-template(name='truncate-text')">
+                      <xsl:call-template name="truncate-text">
                         <xsl:with-param name="text" select="$processedText"/>
-                      </xsl:value-of>
+                      </xsl:call-template>
                     </div>
                     <a href="{atom:link/@href}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-primary hover:text-primary/80 font-medium">
                       阅读原文 →
