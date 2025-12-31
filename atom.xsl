@@ -11,18 +11,18 @@
   <xsl:template name="process-summary">
     <xsl:param name="text"/>
     <xsl:choose>
-      <xsl:when test="contains($text, '<img ')">
-        <xsl:value-of select="substring-before($text, '<img ')"/>
-        <xsl:variable name="imgAttrs" select="substring-before(substring-after($text, '<img '), '>')"/>
-        <xsl:value-of select="concat('<img class=&quot;summary-img&quot; ', $imgAttrs, ' />')" disable-output-escaping="yes"/>
+      <xsl:when test="contains($text, '&lt;img ')">
+        <xsl:value-of select="substring-before($text, '&lt;img ')"/>
+        <xsl:variable name="imgAttrs" select="substring-before(substring-after($text, '&lt;img '), '&gt;')"/>
+        <xsl:value-of select="concat('&lt;img class=&quot;summary-img&quot; ', $imgAttrs, ' /&gt;')" disable-output-escaping="yes"/>
         <xsl:call-template name="process-summary">
-          <xsl:with-param name="text" select="substring-after(substring-after($text, '<img '), '>')"/>
+          <xsl:with-param name="text" select="substring-after(substring-after($text, '&lt;img '), '&gt;')"/>
         </xsl:call-template>
       </xsl:when>
-      <xsl:when test="contains($text, '<')">
-        <xsl:value-of select="substring-before($text, '<')"/>
+      <xsl:when test="contains($text, '&lt;')">
+        <xsl:value-of select="substring-before($text, '&lt;')"/>
         <xsl:call-template name="process-summary">
-          <xsl:with-param name="text" select="substring-after($text, '>')"/>
+          <xsl:with-param name="text" select="substring-after($text, '&gt;')"/>
         </xsl:call-template>
       </xsl:when>
       <xsl:otherwise>
