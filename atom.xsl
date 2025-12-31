@@ -20,7 +20,7 @@
                 colors: {
                   primary: '#4f46e5',
                   accent: '#e879f9',
-                  lightBg: 'rgba(250, 250, 252, 0.7)', // 浅色半透明背景
+                  lightBg: 'rgba(250, 250, 252, 0.4)', // 浅色半透明背景
                   lightCard: 'rgba(255, 255, 255, 0.9)' // 卡片半透明色
                 },
                 fontFamily: {
@@ -51,8 +51,8 @@
               width: 100%;
             }
             .bg-blur {
-              backdrop-filter: blur(12px);
-              -webkit-backdrop-filter: blur(12px);
+              backdrop-filter: blur(7px);
+              -webkit-backdrop-filter: blur(7px);
             }
           }
         </style>
