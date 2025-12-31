@@ -6,25 +6,26 @@
   <xsl:variable name="feedDesc" select="/atom:feed/atom:subtitle | /rss/channel/description"/>
   <xsl:variable name="feedLink" select="/atom:feed/atom:link[@rel='alternate']/@href | /rss/channel/link"/>
 
-  <!-- 工具：只保留<img>标签，过滤其他HTML标签 -->
-  <xsl:template name="keep-img-strip-others">
+  <!-- 核心修复：原生语法保留<img>并直接加样式，不依赖扩展函数 -->
+  <xsl:template name="process-summary">
     <xsl:param name="text"/>
     <xsl:choose>
-      <!-- 匹配<img>标签，保留整个标签 -->
+      <!-- 匹配<img>标签，直接添加class样式 -->
       <xsl:when test="contains($text, '&lt;img ')">
-        <!-- 保留<img>前的纯文本 -->
+        <!-- 输出<img>前的纯文本 -->
         <xsl:value-of select="substring-before($text, '&lt;img ')"/>
-        <!-- 保留完整<img>标签 -->
-        <xsl:value-of select="concat('&lt;img ', substring-before(substring-after($text, '&lt;img '), '&gt;'), '&gt;')" disable-output-escaping="yes"/>
+        <!-- 提取<img>标签内容，嵌入class -->
+        <xsl:variable name="imgContent" select="substring-before(substring-after($text, '&lt;img '), '&gt;')"/>
+        <xsl:value-of select="concat('&lt;img class=&quot;summary-img&quot; ', $imgContent, '&gt;')" disable-output-escaping="yes"/>
         <!-- 继续处理剩余内容 -->
-        <xsl:call-template name="keep-img-strip-others">
+        <xsl:call-template name="process-summary">
           <xsl:with-param name="text" select="substring-after(substring-after($text, '&lt;img '), '&gt;')"/>
         </xsl:call-template>
       </xsl:when>
       <!-- 过滤其他HTML标签 -->
       <xsl:when test="contains($text, '&lt;')">
         <xsl:value-of select="substring-before($text, '&lt;')"/>
-        <xsl:call-template name="keep-img-strip-others">
+        <xsl:call-template name="process-summary">
           <xsl:with-param name="text" select="substring-after($text, '&gt;')"/>
         </xsl:call-template>
       </xsl:when>
@@ -34,7 +35,7 @@
     </xsl:choose>
   </xsl:template>
 
-  <!-- 工具：截断文本（保留250字，避免截断图片） -->
+  <!-- 截断文本（250字，原生语法无兼容问题） -->
   <xsl:template name="truncate-text">
     <xsl:param name="text"/>
     <xsl:param name="length" select="250"/>
@@ -96,7 +97,7 @@
               backdrop-filter: blur(5px);
               -webkit-backdrop-filter: blur(5px);
             }
-            /* 优化折叠交互 */
+            /* 折叠交互优化 */
             details summary::-webkit-details-marker {
               display: none;
             }
@@ -109,12 +110,13 @@
             details[open] summary::after {
               transform: rotate(180deg);
             }
-            /* 摘要图片适配样式 */
+            /* 图片适配样式（兼容所有浏览器） */
             .summary-img {
               max-width: 100%;
               height: auto;
               border-radius: 4px;
               margin: 8px 0;
+              display: block;
             }
           }
         </style>
@@ -161,20 +163,16 @@
                     </div>
                   </summary>
                   <div class="mt-4 pt-4 border-t border-gray-200/50 text-gray-700">
-                    <!-- 保留图片+截断250字 -->
                     <div class="mb-4">
-                      <xsl:variable name="processedSummary">
-                        <xsl:call-template name="keep-img-strip-others">
+                      <!-- 处理摘要：保留图片+过滤标签+截断250字 -->
+                      <xsl:variable name="processedText">
+                        <xsl:call-template name="process-summary">
                           <xsl:with-param name="text" select="atom:summary | atom:content"/>
                         </xsl:call-template>
                       </xsl:variable>
-                      <xsl:variable name="truncatedSummary">
-                        <xsl:call-template name="truncate-text">
-                          <xsl:with-param name="text" select="$processedSummary"/>
-                        </xsl:call-template>
-                      </xsl:variable>
-                      <!-- 给图片加适配样式 -->
-                      <xsl:value-of select="replace($truncatedSummary, '&lt;img ', '&lt;img class=&quot;summary-img&quot; ')"/>
+                      <xsl:call-template name="truncate-text">
+                        <xsl:with-param name="text" select="$processedText"/>
+                      </xsl:call-template>
                     </div>
                     <a href="{atom:link/@href}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-primary hover:text-primary/80 font-medium">
                       阅读原文 →
@@ -199,20 +197,17 @@
                     </div>
                   </summary>
                   <div class="mt-4 pt-4 border-t border-gray-200/50 text-gray-700">
-                    <!-- 保留图片+截断250字 -->
                     <div class="mb-4">
-                      <xsl:variable name="processedDesc">
-                        <xsl:call-template name="keep-img-strip-others">
+                      <!-- 处理摘要：保留图片+过滤标签+截断250字 -->
+                      <xsl:variable name="processedText">
+                        <xsl:call-template name="process-summary">
                           <xsl:with-param name="text" select="description"/>
                         </xsl:call-template>
                       </xsl:variable>
-                      <xsl:variable name="truncatedDesc">
-                        <xsl:call-template name="truncate-text">
-                          <xsl:with-param name="text" select="$processedDesc"/>
-                        </xsl:call-template>
-                      </xsl:variable>
-                      <!-- 给图片加适配样式 -->
-                      <xsl:value-of select="replace($truncatedDesc, '&lt;img ', '&lt;img class=&quot;summary-img&quot; ')"/>
+                      <xsl:call-template name="truncate-text">
+                        <xsl:with-param name="text" select="$processedText"/>
+                      </xsl:with-param>
+                    </xsl:call-template>
                     </div>
                     <a href="{link}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-primary hover:text-primary/80 font-medium">
                       阅读原文 →
