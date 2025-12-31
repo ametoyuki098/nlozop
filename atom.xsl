@@ -2,22 +2,28 @@
 <xsl:stylesheet version="3.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:atom="http://www.w3.org/2005/Atom">
   <xsl:output method="html" version="4.0" encoding="UTF-8" indent="yes"/>
 
-  <xsl:variable name="feedTitle" select="/atom:feed/atom:title | /rss/channel/title"/>
-  <xsl:variable name="feedDesc" select="/atom:feed/atom:subtitle | /rss/channel/description"/>
-  <xsl:variable name="feedLink" select="/atom:feed/atom:link[@rel='alternate']/@href | /rss/channel/link"/>
+  <!-- 仅保留Atom Feed的变量 -->
+  <xsl:variable name="feedTitle" select="/atom:feed/atom:title"/>
+  <xsl:variable name="feedDesc" select="/atom:feed/atom:subtitle"/>
+  <xsl:variable name="feedLink" select="/atom:feed/atom:link[@rel='alternate']/@href"/>
 
-  <!-- 处理摘要：保留<img>并加样式，过滤其他HTML标签 -->
+  <!-- 修复：只保留<img>标签，过滤所有其他HTML标签（含<p>） -->
   <xsl:template name="process-summary">
     <xsl:param name="text"/>
     <xsl:choose>
+      <!-- 匹配并保留完整<img>标签 -->
       <xsl:when test="contains($text, '&lt;img ')">
+        <!-- 输出<img>前的纯文本 -->
         <xsl:value-of select="substring-before($text, '&lt;img ')"/>
-        <xsl:variable name="imgContent" select="substring-before(substring-after($text, '&lt;img '), '&gt;')"/>
-        <xsl:value-of select="concat('&lt;img class=&quot;summary-img&quot; ', $imgContent, '&gt;')" disable-output-escaping="yes"/>
+        <!-- 提取并保留<img>标签（自动补全闭合，适配HTML解析） -->
+        <xsl:variable name="imgAttrs" select="substring-before(substring-after($text, '&lt;img '), '&gt;')"/>
+        <xsl:value-of select="concat('&lt;img class=&quot;summary-img&quot; ', $imgAttrs, ' /&gt;')" disable-output-escaping="yes"/>
+        <!-- 继续处理剩余内容 -->
         <xsl:call-template name="process-summary">
           <xsl:with-param name="text" select="substring-after(substring-after($text, '&lt;img '), '&gt;')"/>
         </xsl:call-template>
       </xsl:when>
+      <!-- 过滤所有其他HTML标签 -->
       <xsl:when test="contains($text, '&lt;')">
         <xsl:value-of select="substring-before($text, '&lt;')"/>
         <xsl:call-template name="process-summary">
@@ -50,7 +56,7 @@
         <meta charset="utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <script src="https://cdn.tailwindcss.com"></script>
-        <title><xsl:value-of select="$feedTitle"/></title>
+        <title><xsl:value-of select="$feedTitle" disable-output-escaping="yes"/></title>
         <script>
           tailwind.config = {
             theme: {
@@ -58,8 +64,8 @@
                 colors: {
                   primary: '#4f46e5',
                   accent: '#e879f9',
-                  lightBg: 'rgba(250, 250, 252, 0.3)',
-                  lightCard: 'rgba(255, 255, 255, 0.5)'
+                  lightBg: 'rgba(250, 250, 252, 0.8)',
+                  lightCard: 'rgba(255, 255, 255, 0.9)'
                 },
                 fontFamily: {
                   sans: ['Inter', 'system-ui', 'sans-serif']
@@ -89,8 +95,8 @@
               width: 100%;
             }
             .bg-blur {
-              backdrop-filter: blur(7px);
-              -webkit-backdrop-filter: blur(7px);
+              backdrop-filter: blur(10px);
+              -webkit-backdrop-filter: blur(10px);
             }
             details summary::-webkit-details-marker {
               display: none;
@@ -114,7 +120,7 @@
           }
         </style>
       </head>
-      <body class="min-h-screen font-sans bg-cover bg-fixed bg-center" style="background-image: url('https://87c80b6.webp.li/i/2025/12/31/st6c2h-9mcj.png');">
+      <body class="min-h-screen font-sans bg-cover bg-fixed bg-center" style="background-image: url('https://picsum.photos/id/1059/1920/1080');">
         <div class="fixed inset-0 bg-white/20 z-0"></div>
         
         <main class="container mx-auto px-4 py-8 max-w-4xl relative z-10 bg-lightBg bg-blur rounded-xl shadow-xl">
@@ -141,7 +147,7 @@
           </header>
 
           <section class="space-y-6">
-            <!-- Atom条目适配 -->
+            <!-- 仅保留Atom条目适配 -->
             <xsl:for-each select="/atom:feed/atom:entry">
               <article class="bg-lightCard bg-blur rounded-lg p-5 hover:shadow-lg hover:shadow-primary/5 transition-all border border-gray-200/50">
                 <details class="group">
@@ -162,44 +168,12 @@
                           <xsl:with-param name="text" select="atom:summary | atom:content"/>
                         </xsl:call-template>
                       </xsl:variable>
-                      <xsl:call-template name="truncate-text">
+                      <!-- 开启转义，让浏览器解析<img>标签 -->
+                      <xsl:value-of select="xsl:call-template(name='truncate-text')">
                         <xsl:with-param name="text" select="$processedText"/>
-                      </xsl:call-template>
+                      </xsl:value-of>
                     </div>
                     <a href="{atom:link/@href}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-primary hover:text-primary/80 font-medium">
-                      阅读原文 →
-                    </a>
-                  </div>
-                </details>
-              </article>
-            </xsl:for-each>
-
-            <!-- RSS条目适配（已修正标签嵌套） -->
-            <xsl:for-each select="/rss/channel/item">
-              <article class="bg-lightCard bg-blur rounded-lg p-5 hover:shadow-lg hover:shadow-primary/5 transition-all border border-gray-200/50">
-                <details class="group">
-                  <summary class="flex items-center justify-between cursor-pointer list-none">
-                    <h2 class="text-lg md:text-xl font-semibold text-gray-900 group-hover:text-primary transition-colors">
-                      <xsl:value-of select="title" disable-output-escaping="yes"/>
-                    </h2>
-                    <div class="flex items-center gap-2">
-                      <time class="text-sm text-gray-500">
-                        <xsl:value-of select="substring(pubDate, 1, 16)"/>
-                      </time>
-                    </div>
-                  </summary>
-                  <div class="mt-4 pt-4 border-t border-gray-200/50 text-gray-700">
-                    <div class="mb-4">
-                      <xsl:variable name="processedText">
-                        <xsl:call-template name="process-summary">
-                          <xsl:with-param name="text" select="description"/>
-                        </xsl:call-template>
-                      </xsl:variable>
-                      <xsl:call-template name="truncate-text">
-                        <xsl:with-param name="text" select="$processedText"/>
-                      </xsl:call-template>
-                    </div>
-                    <a href="{link}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-primary hover:text-primary/80 font-medium">
                       阅读原文 →
                     </a>
                   </div>
@@ -209,7 +183,7 @@
           </section>
 
           <footer class="mt-12 pt-6 border-t border-gray-200/80 text-center text-gray-500 text-sm">
-            <p>由 <a href="https://rss.beauty" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">RSS.Beauty</a> 样式优化 | 支持 Atom/RSS 订阅流</p>
+            <p>由 <a href="https://rss.beauty" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">RSS.Beauty</a> 样式优化 | 仅支持 Atom 订阅流</p>
           </footer>
         </main>
       </body>
