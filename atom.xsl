@@ -6,6 +6,48 @@
   <xsl:variable name="feedDesc" select="/atom:feed/atom:subtitle | /rss/channel/description"/>
   <xsl:variable name="feedLink" select="/atom:feed/atom:link[@rel='alternate']/@href | /rss/channel/link"/>
 
+  <!-- 工具：只保留<img>标签，过滤其他HTML标签 -->
+  <xsl:template name="keep-img-strip-others">
+    <xsl:param name="text"/>
+    <xsl:choose>
+      <!-- 匹配<img>标签，保留整个标签 -->
+      <xsl:when test="contains($text, '&lt;img ')">
+        <!-- 保留<img>前的纯文本 -->
+        <xsl:value-of select="substring-before($text, '&lt;img ')"/>
+        <!-- 保留完整<img>标签 -->
+        <xsl:value-of select="concat('&lt;img ', substring-before(substring-after($text, '&lt;img '), '&gt;'), '&gt;')" disable-output-escaping="yes"/>
+        <!-- 继续处理剩余内容 -->
+        <xsl:call-template name="keep-img-strip-others">
+          <xsl:with-param name="text" select="substring-after(substring-after($text, '&lt;img '), '&gt;')"/>
+        </xsl:call-template>
+      </xsl:when>
+      <!-- 过滤其他HTML标签 -->
+      <xsl:when test="contains($text, '&lt;')">
+        <xsl:value-of select="substring-before($text, '&lt;')"/>
+        <xsl:call-template name="keep-img-strip-others">
+          <xsl:with-param name="text" select="substring-after($text, '&gt;')"/>
+        </xsl:call-template>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="$text"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+
+  <!-- 工具：截断文本（保留250字，避免截断图片） -->
+  <xsl:template name="truncate-text">
+    <xsl:param name="text"/>
+    <xsl:param name="length" select="250"/>
+    <xsl:choose>
+      <xsl:when test="string-length($text) > $length">
+        <xsl:value-of select="concat(substring($text, 1, $length), '...')"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="$text"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+
   <xsl:template match="/">
     <html lang="en" class="scroll-smooth">
       <head>
@@ -20,8 +62,8 @@
                 colors: {
                   primary: '#4f46e5',
                   accent: '#e879f9',
-                  lightBg: 'rgba(250, 250, 252, 0.4)', // 浅色半透明背景
-                  lightCard: 'rgba(255, 255, 255, 0.9)' // 卡片半透明色
+                  lightBg: 'rgba(250, 250, 252, 0.3)',
+                  lightCard: 'rgba(255, 255, 255, 0.6)'
                 },
                 fontFamily: {
                   sans: ['Inter', 'system-ui', 'sans-serif']
@@ -51,20 +93,36 @@
               width: 100%;
             }
             .bg-blur {
-              backdrop-filter: blur(7px);
-              -webkit-backdrop-filter: blur(7px);
+              backdrop-filter: blur(5px);
+              -webkit-backdrop-filter: blur(5px);
+            }
+            /* 优化折叠交互 */
+            details summary::-webkit-details-marker {
+              display: none;
+            }
+            details summary::after {
+              content: '↓';
+              font-size: 0.8em;
+              color: #4f46e5;
+              transition: transform 0.2s;
+            }
+            details[open] summary::after {
+              transform: rotate(180deg);
+            }
+            /* 摘要图片适配样式 */
+            .summary-img {
+              max-width: 100%;
+              height: auto;
+              border-radius: 4px;
+              margin: 8px 0;
             }
           }
         </style>
       </head>
-      <!-- 浅色背景图：选低饱和度浅色图，避免刺眼 -->
-      <body class="min-h-screen font-sans bg-cover bg-fixed bg-center" style="background-image: url('https://87c80b6.webp.li/i/2025/12/31/st6c2h-9mcj.png'); /* 可替换为你的浅色背景图URL */">
-        <!-- 浅色遮罩层：提升文字对比，避免背景过亮 -->
+      <body class="min-h-screen font-sans bg-cover bg-fixed bg-center" style="background-image: url('https://87c80b6.webp.li/i/2025/12/31/st6c2h-9mcj.png');">
         <div class="fixed inset-0 bg-white/20 z-0"></div>
         
-        <!-- 主容器：浅色磨砂玻璃 -->
         <main class="container mx-auto px-4 py-8 max-w-4xl relative z-10 bg-lightBg bg-blur rounded-xl shadow-xl">
-          <!-- Feed头部信息 -->
           <header class="mb-8 pb-6 border-b border-gray-200/80">
             <a href="{$feedLink}" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2">
               <svg class="w-8 h-8 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -87,27 +145,37 @@
             </div>
           </header>
 
-          <!-- 条目列表：浅色磨砂卡片 -->
           <section class="space-y-6">
+            <!-- Atom条目适配 -->
             <xsl:for-each select="/atom:feed/atom:entry">
               <article class="bg-lightCard bg-blur rounded-lg p-5 hover:shadow-lg hover:shadow-primary/5 transition-all border border-gray-200/50">
                 <details class="group">
-                  <summary class="flex flex-col md:flex-row md:items-center justify-between cursor-pointer list-none">
+                  <summary class="flex items-center justify-between cursor-pointer list-none">
                     <h2 class="text-lg md:text-xl font-semibold text-gray-900 group-hover:text-primary transition-colors">
                       <xsl:value-of select="atom:title" disable-output-escaping="yes"/>
                     </h2>
-                    <time class="mt-2 md:mt-0 text-sm text-gray-500">
-                      <xsl:value-of select="substring(atom:updated, 1, 10)"/>
-                    </time>
+                    <div class="flex items-center gap-2">
+                      <time class="text-sm text-gray-500">
+                        <xsl:value-of select="substring(atom:updated, 1, 10)"/>
+                      </time>
+                    </div>
                   </summary>
                   <div class="mt-4 pt-4 border-t border-gray-200/50 text-gray-700">
-                    <p class="mb-4">
-                      <xsl:choose>
-                        <xsl:when test="atom:summary"><xsl:value-of select="atom:summary" disable-output-escaping="yes"/></xsl:when>
-                        <xsl:when test="atom:content"><xsl:value-of select="atom:content" disable-output-escaping="yes"/></xsl:when>
-                        <xsl:otherwise>无摘要信息</xsl:otherwise>
-                      </xsl:choose>
-                    </p>
+                    <!-- 保留图片+截断250字 -->
+                    <div class="mb-4">
+                      <xsl:variable name="processedSummary">
+                        <xsl:call-template name="keep-img-strip-others">
+                          <xsl:with-param name="text" select="atom:summary | atom:content"/>
+                        </xsl:call-template>
+                      </xsl:variable>
+                      <xsl:variable name="truncatedSummary">
+                        <xsl:call-template name="truncate-text">
+                          <xsl:with-param name="text" select="$processedSummary"/>
+                        </xsl:call-template>
+                      </xsl:variable>
+                      <!-- 给图片加适配样式 -->
+                      <xsl:value-of select="replace($truncatedSummary, '&lt;img ', '&lt;img class=&quot;summary-img&quot; ')"/>
+                    </div>
                     <a href="{atom:link/@href}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-primary hover:text-primary/80 font-medium">
                       阅读原文 →
                     </a>
@@ -116,21 +184,36 @@
               </article>
             </xsl:for-each>
 
+            <!-- RSS条目适配 -->
             <xsl:for-each select="/rss/channel/item">
               <article class="bg-lightCard bg-blur rounded-lg p-5 hover:shadow-lg hover:shadow-primary/5 transition-all border border-gray-200/50">
                 <details class="group">
-                  <summary class="flex flex-col md:flex-row md:items-center justify-between cursor-pointer list-none">
+                  <summary class="flex items-center justify-between cursor-pointer list-none">
                     <h2 class="text-lg md:text-xl font-semibold text-gray-900 group-hover:text-primary transition-colors">
                       <xsl:value-of select="title" disable-output-escaping="yes"/>
                     </h2>
-                    <time class="mt-2 md:mt-0 text-sm text-gray-500">
-                      <xsl:value-of select="substring(pubDate, 1, 16)"/>
-                    </time>
+                    <div class="flex items-center gap-2">
+                      <time class="text-sm text-gray-500">
+                        <xsl:value-of select="substring(pubDate, 1, 16)"/>
+                      </time>
+                    </div>
                   </summary>
                   <div class="mt-4 pt-4 border-t border-gray-200/50 text-gray-700">
-                    <p class="mb-4">
-                      <xsl:value-of select="description" disable-output-escaping="yes"/>
-                    </p>
+                    <!-- 保留图片+截断250字 -->
+                    <div class="mb-4">
+                      <xsl:variable name="processedDesc">
+                        <xsl:call-template name="keep-img-strip-others">
+                          <xsl:with-param name="text" select="description"/>
+                        </xsl:call-template>
+                      </xsl:variable>
+                      <xsl:variable name="truncatedDesc">
+                        <xsl:call-template name="truncate-text">
+                          <xsl:with-param name="text" select="$processedDesc"/>
+                        </xsl:call-template>
+                      </xsl:variable>
+                      <!-- 给图片加适配样式 -->
+                      <xsl:value-of select="replace($truncatedDesc, '&lt;img ', '&lt;img class=&quot;summary-img&quot; ')"/>
+                    </div>
                     <a href="{link}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-primary hover:text-primary/80 font-medium">
                       阅读原文 →
                     </a>
