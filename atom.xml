@@ -158,30 +158,6 @@
   </entry>
   
   <entry>
-    <title>test</title>
-    <link href="https://ametoyuki098.github.io/nlozop/test/"/>
-    <id>https://ametoyuki098.github.io/nlozop/test/</id>
-    <published>2025-07-12T23:52:52.000Z</published>
-    <updated>2025-11-23T09:38:22.000Z</updated>
-    
-    <content type="html"><![CDATA[<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -i input.mp4 output.mp4 <span class="comment"># 这是ffmpeg的基础命令。</span></span><br><span class="line">magick <span class="comment"># 一个强大的命令行图片工具。</span></span><br><span class="line">pkg ins termux-api <span class="comment"># 安装此工具需先安装-termux-api插件，这样才能正常调用手机各类api。</span></span><br></pre></td></tr></table></figure><div class="aplayer"      data-id="1394167216"      data-server="netease"      data-type="song"      data-mutex="true"     data-preload="auto"      data-theme="#3F51B5"></div><div class="aplayer"data-id="001a6Db90hYLmp" data-server="tencent" data-type="song" data-mutex="true" data-preload="auto" data-theme="#3F51B5"></div><div class="aplayer"data-id="000Gb5s20okAGc"data-server="tencent"data-type="song"data-mutex="true"data-autoplay="true"data-preload="auto"data-theme="#3F51B5"></div>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=</summary>
-      
-    
-    
-    
-    <category term="测试" scheme="https://ametoyuki098.github.io/nlozop/categories/%E6%B5%8B%E8%AF%95/"/>
-    
-    
-    <category term="termux" scheme="https://ametoyuki098.github.io/nlozop/tags/termux/"/>
-    
-  </entry>
-  
-  <entry>
     <title>一个自动部署的测试</title>
     <link href="https://ametoyuki098.github.io/nlozop/dgxhjf/"/>
     <id>https://ametoyuki098.github.io/nlozop/dgxhjf/</id>
@@ -202,6 +178,30 @@
     
     
     <category term="tx" scheme="https://ametoyuki098.github.io/nlozop/tags/tx/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>test</title>
+    <link href="https://ametoyuki098.github.io/nlozop/test/"/>
+    <id>https://ametoyuki098.github.io/nlozop/test/</id>
+    <published>2025-07-12T23:52:52.000Z</published>
+    <updated>2025-11-23T09:38:22.000Z</updated>
+    
+    <content type="html"><![CDATA[<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -i input.mp4 output.mp4 <span class="comment"># 这是ffmpeg的基础命令。</span></span><br><span class="line">magick <span class="comment"># 一个强大的命令行图片工具。</span></span><br><span class="line">pkg ins termux-api <span class="comment"># 安装此工具需先安装-termux-api插件，这样才能正常调用手机各类api。</span></span><br></pre></td></tr></table></figure><div class="aplayer"      data-id="1394167216"      data-server="netease"      data-type="song"      data-mutex="true"     data-preload="auto"      data-theme="#3F51B5"></div><div class="aplayer"data-id="001a6Db90hYLmp" data-server="tencent" data-type="song" data-mutex="true" data-preload="auto" data-theme="#3F51B5"></div><div class="aplayer"data-id="000Gb5s20okAGc"data-server="tencent"data-type="song"data-mutex="true"data-autoplay="true"data-preload="auto"data-theme="#3F51B5"></div>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=</summary>
+      
+    
+    
+    
+    <category term="测试" scheme="https://ametoyuki098.github.io/nlozop/categories/%E6%B5%8B%E8%AF%95/"/>
+    
+    
+    <category term="termux" scheme="https://ametoyuki098.github.io/nlozop/tags/termux/"/>
     
   </entry>
   
